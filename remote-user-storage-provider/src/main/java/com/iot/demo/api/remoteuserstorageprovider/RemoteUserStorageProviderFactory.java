@@ -15,7 +15,7 @@ public class RemoteUserStorageProviderFactory implements UserStorageProviderFact
     @Override
     public RemoteUserStorageProvider create(KeycloakSession session, ComponentModel model)
     {
-        return new RemoteUserStorageProvider(session, model, buildHttpClient("http://localhost:8099"));
+        return new RemoteUserStorageProvider(session, model, buildHttpClient("http://localhost:9099"));
     }
 
     // identifies the factory in the runtime, and it will return String value that will be shown in keycloak admin console

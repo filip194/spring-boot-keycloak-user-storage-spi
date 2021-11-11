@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+
+  users-postgres-service:
+    container_name: users-service-container
+    image: postgres:14 # port 5432 is automatically exposed with this image
+    environment: # here we read environment variable values from .env file
+      - POSTGRES_PORT=${PG_DB_PORT}
+      - POSTGRES_USER=${PG_DB_USER}
+      - POSTGRES_PASSWORD=${PG_DB_PASSWORD}
+      - APP_DB=${APP_PG_DB_NAME}
+      - APP_DB_USER=${APP_PG_DB_USER}
+      - APP_DB_PASSWORD=${APP_PG_DB_PASSWORD}
+    volumes:
+      - ./database/scripts:/docker-entrypoint-initdb.d/
+    ports:
+      - "5454:5432"
+    healthcheck:
+      test: ["CMD", "pg_isready", "-d", "postgres", "-U", "root"]
+      timeout: 5s
+      interval: 10s
+      retries: 10
+    restart: always
+    networks:
+      - users-service-network
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: 256M
+
+networks:
+  users-service-network:
