@@ -132,7 +132,7 @@ public class RemoteUserStorageProvider implements UserStorageProvider, UserLooku
         {
             return false;
         }
-        return verifyPasswordResponse.getResult();
+        return verifyPasswordResponse.isVerified();
     }
 
 }

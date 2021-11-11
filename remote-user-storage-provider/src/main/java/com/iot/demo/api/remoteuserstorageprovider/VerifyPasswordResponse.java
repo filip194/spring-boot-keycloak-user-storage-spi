@@ -1,15 +1,13 @@
 package com.iot.demo.api.remoteuserstorageprovider;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class VerifyPasswordResponse
 {
-    private boolean result;
+    private boolean verified;
 }
