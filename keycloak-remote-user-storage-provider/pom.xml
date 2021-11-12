@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.iot.demo.api.remoteuserstorageprovider</groupId>
-	<artifactId>remote-user-storage-provider</artifactId>
+	<artifactId>keycloak-remote-user-storage-provider</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>remote-user-storage-provider</name>
+	<name>keycloak-remote-user-storage-provider</name>
 	<description>Custom Keycloak User Storage Provider Implementation</description>
 	<properties>
 		<java.version>11</java.version>
@@ -58,7 +58,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>remote-user-storage-provider</finalName>
+		<finalName>keycloak-remote-user-storage-provider</finalName>
 <!--		<plugins>-->
 <!--			<plugin>-->
 <!--				<groupId>org.springframework.boot</groupId>-->

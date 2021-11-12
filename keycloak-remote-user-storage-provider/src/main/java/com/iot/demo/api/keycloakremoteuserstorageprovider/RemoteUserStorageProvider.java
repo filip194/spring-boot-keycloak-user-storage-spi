@@ -1,4 +1,6 @@
-package com.iot.demo.api.remoteuserstorageprovider;
+package com.iot.demo.api.keycloakremoteuserstorageprovider;
+
+import java.util.stream.Collectors;
 
 import org.keycloak.component.ComponentModel;
 import org.keycloak.credential.CredentialInput;
@@ -11,8 +13,6 @@ import org.keycloak.models.credential.PasswordCredentialModel;
 import org.keycloak.storage.UserStorageProvider;
 import org.keycloak.storage.adapter.AbstractUserAdapter;
 import org.keycloak.storage.user.UserLookupProvider;
-
-import com.iot.demo.api.remoteuserstorageprovider.model.User;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -108,7 +108,8 @@ public class RemoteUserStorageProvider implements UserStorageProvider, UserLooku
         {
             return false;
         }
-        return !getUserCredentialStore().getStoredCredentialsByType(realm, user, credentialType).isEmpty();
+        return !getUserCredentialStore().getStoredCredentialsByTypeStream(realm, user, credentialType)
+                .collect(Collectors.toList()).isEmpty();
     }
 
     private UserCredentialStore getUserCredentialStore()
@@ -120,11 +121,12 @@ public class RemoteUserStorageProvider implements UserStorageProvider, UserLooku
     @Override
     public boolean isValid(RealmModel realm, UserModel user, CredentialInput credentialInput)
     {
+        log.info("copiedUsername: {}", copiedUsername);
         log.info("isValid() EMAIL: {}", user.getEmail());
         log.info("isValid() USERNAME: {}", user.getUsername());
         log.info("isValid() PASSWORD: {}", credentialInput.getChallengeResponse());
 
-//        final VerifyPasswordResponse verifyPasswordResponse = usersAPIService.verifyUserPassword(user.getUsername(),
+        //        final VerifyPasswordResponse verifyPasswordResponse = usersAPIService.verifyUserPassword(user.getUsername(),
         final VerifyPasswordResponse verifyPasswordResponse = usersAPIService.verifyUserPassword(copiedUsername,
                 credentialInput.getChallengeResponse());
 

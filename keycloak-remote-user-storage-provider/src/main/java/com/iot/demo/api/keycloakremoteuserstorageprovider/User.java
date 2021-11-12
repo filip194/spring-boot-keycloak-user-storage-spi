@@ -1,4 +1,4 @@
-package com.iot.demo.api.remoteuserstorageprovider.model;
+package com.iot.demo.api.keycloakremoteuserstorageprovider;
 
 import lombok.Getter;
 import lombok.Setter;

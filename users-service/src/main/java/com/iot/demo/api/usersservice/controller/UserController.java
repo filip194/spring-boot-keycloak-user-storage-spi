@@ -40,6 +40,8 @@ public class UserController
     public ResponseEntity<User> getUserByUsername(@PathParam(value = "username") String username)
     {
         log.info("Getting user by username: {}", username);
+
+
         final Optional<User> user = userService.getUserByUsername(username);
         return user.map(userValue -> new ResponseEntity<>(userValue, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));

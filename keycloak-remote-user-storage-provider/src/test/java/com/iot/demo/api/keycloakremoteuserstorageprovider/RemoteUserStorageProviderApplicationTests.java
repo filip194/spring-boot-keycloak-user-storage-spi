@@ -1,4 +1,4 @@
-package com.iot.demo.api.remoteuserstorageprovider;
+package com.iot.demo.api.keycloakremoteuserstorageprovider;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

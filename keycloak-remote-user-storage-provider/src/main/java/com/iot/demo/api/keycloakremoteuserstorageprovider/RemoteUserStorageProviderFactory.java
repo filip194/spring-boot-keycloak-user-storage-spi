@@ -1,4 +1,4 @@
-package com.iot.demo.api.remoteuserstorageprovider;
+package com.iot.demo.api.keycloakremoteuserstorageprovider;
 
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
@@ -10,13 +10,14 @@ import org.keycloak.storage.UserStorageProviderFactory;
 public class RemoteUserStorageProviderFactory implements UserStorageProviderFactory<RemoteUserStorageProvider>
 {
     // can be also used as .jar name
-    public static final String PROVIDER_NAME = "remote-user-storage-provider";
+    public static final String PROVIDER_NAME = "keycloak-remote-user-storage-provider";
+    public static final String LOCALHOST_URI = "http://localhost:9099";
 
     // this is where we are going to create new instance of UserStorageProvider interface/class
     @Override
     public RemoteUserStorageProvider create(KeycloakSession session, ComponentModel model)
     {
-        return new RemoteUserStorageProvider(session, model, buildHttpClient("http://localhost:9099"));
+        return new RemoteUserStorageProvider(session, model, buildHttpClient(LOCALHOST_URI));
     }
 
     // identifies the factory in the runtime, and it will return String value that will be shown in keycloak admin console
@@ -36,7 +37,7 @@ public class RemoteUserStorageProviderFactory implements UserStorageProviderFact
                 .proxyBuilder(UsersAPIService.class)
                 .classloader(UsersAPIService.class.getClassLoader())
                 .build();
-
     }
+
 }
 
