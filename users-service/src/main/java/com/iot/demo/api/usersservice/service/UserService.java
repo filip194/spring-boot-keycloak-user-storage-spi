@@ -68,15 +68,9 @@ public class UserService
         return userRepository.findAll().stream().map(this::convertUserEntityToUserModel).collect(Collectors.toList());
     }
 
-//    public Optional<User> getUserByUsername(final String username)
-//    {
-//        return userRepository.findByUsername(username).map(this::convertUserEntityToUserModel);
-//    }
-
     private User convertUserEntityToUserModel(final UserEntity entity)
     {
         final User user = new User();
-        user.setUserId(entity.getUserId());
         user.setUsername(entity.getUsername());
         user.setType(entity.getType());
         user.setFirstName(entity.getFirstName());

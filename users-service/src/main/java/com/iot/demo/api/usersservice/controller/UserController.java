@@ -36,16 +36,7 @@ public class UserController
         return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
     }
 
-    //    @GetMapping(path = "/{username}")
-    //    public ResponseEntity<User> getUserByUsername(@PathParam(value = "username") String username)
-    //    {
-    //        log.info("Getting user by username: {}", username);
-    //
-    //        final Optional<User> user = userService.getUserByUsername(username);
-    //        return user.map(userValue -> new ResponseEntity<>(userValue, HttpStatus.OK))
-    //                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
-    //    }
-
+    // these endpoints must be defined like this for keycloak remote user storage to trigger them and find info on users
     @GetMapping("/{username}")
     public User getUser(@PathVariable("username") String userName)
     {

@@ -1,7 +1,6 @@
 package com.iot.demo.api.usersservice.model;
 
 import java.io.Serializable;
-import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
@@ -21,7 +20,6 @@ public class User implements Serializable
 {
     private static final long serialVersionUID = 5313493413859894497L;
 
-    private UUID userId;
     private UserType type;
     private String username;
     private String firstName;
