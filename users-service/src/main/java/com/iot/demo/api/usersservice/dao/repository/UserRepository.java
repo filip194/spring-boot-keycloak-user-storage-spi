@@ -11,5 +11,7 @@ import com.iot.demo.api.usersservice.dao.entity.UserEntity;
 public interface UserRepository extends JpaRepository<UserEntity, Long>
 {
     Optional<UserEntity> findByUsername(String username);
+
+    UserEntity findByEmail(String userName);
 }
 

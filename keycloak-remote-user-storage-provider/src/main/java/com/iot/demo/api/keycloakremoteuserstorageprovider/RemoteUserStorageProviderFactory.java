@@ -10,7 +10,7 @@ import org.keycloak.storage.UserStorageProviderFactory;
 public class RemoteUserStorageProviderFactory implements UserStorageProviderFactory<RemoteUserStorageProvider>
 {
     // can be also used as .jar name
-    public static final String PROVIDER_NAME = "keycloak-remote-user-storage-provider";
+    public static final String PROVIDER_NAME = "custom-user-storage-provider";
     public static final String LOCALHOST_URI = "http://localhost:9099";
 
     // this is where we are going to create new instance of UserStorageProvider interface/class

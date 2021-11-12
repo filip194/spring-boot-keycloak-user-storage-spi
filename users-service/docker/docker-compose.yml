@@ -21,7 +21,7 @@ services:
       timeout: 5s
       interval: 10s
       retries: 10
-    restart: always
+    restart: no
     networks:
       - users-service-network
     deploy:

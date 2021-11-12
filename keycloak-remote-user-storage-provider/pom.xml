@@ -58,7 +58,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>keycloak-remote-user-storage-provider</finalName>
+		<finalName>custom-user-storage-provider</finalName>
 <!--		<plugins>-->
 <!--			<plugin>-->
 <!--				<groupId>org.springframework.boot</groupId>-->
