@@ -10,6 +10,7 @@ import org.keycloak.models.KeycloakSession;
 import org.keycloak.models.RealmModel;
 import org.keycloak.models.UserModel;
 import org.keycloak.models.credential.PasswordCredentialModel;
+import org.keycloak.storage.StorageId;
 import org.keycloak.storage.UserStorageProvider;
 import org.keycloak.storage.adapter.AbstractUserAdapter;
 import org.keycloak.storage.user.UserLookupProvider;
@@ -23,9 +24,6 @@ public class RemoteUserStorageProvider implements UserStorageProvider, UserLooku
     private final KeycloakSession session;
     private final ComponentModel componentModel;
     private final UsersAPIService usersAPIService;
-
-    // TODO temporary solution to get username/email for isValid() method
-    private String copiedUsername;
 
     public RemoteUserStorageProvider(KeycloakSession session, ComponentModel componentModel,
             UsersAPIService usersAPIService)
@@ -51,12 +49,17 @@ public class RemoteUserStorageProvider implements UserStorageProvider, UserLooku
     @Override
     public UserModel getUserById(String id, RealmModel realm)
     {
-        return null;
+        final StorageId storageId = new StorageId(id);
+        final String username = storageId.getExternalId();
+        log.info("getUserById() ::: id: {}", id);
+        log.info("getUserById() ::: username: {}", username);
+        return getUserByUsername(username, realm);
     }
 
     @Override
     public UserModel getUserByUsername(String username, RealmModel realm)
     {
+        log.info("getUserByUsername() ::: username: {}", username);
         UserModel userModel = null;
         final User user = usersAPIService.getUserDetails(username);
 
@@ -68,10 +71,15 @@ public class RemoteUserStorageProvider implements UserStorageProvider, UserLooku
         return userModel;
     }
 
+    @Override
+    public UserModel getUserByEmail(String email, RealmModel realm)
+    {
+        return null;
+    }
+
     private UserModel createUserModel(final String username, RealmModel realm)
     {
         log.info("createUserModel() USERNAME: {}", username);
-        this.copiedUsername = username;
 
         return new AbstractUserAdapter(session, realm, componentModel)
         {
@@ -83,12 +91,6 @@ public class RemoteUserStorageProvider implements UserStorageProvider, UserLooku
         };
     }
 
-    @Override
-    public UserModel getUserByEmail(String email, RealmModel realm)
-    {
-        return null;
-    }
-
     // ####################################################
     // CredentialInputValidator - validate user credentials
     // ####################################################
@@ -97,6 +99,7 @@ public class RemoteUserStorageProvider implements UserStorageProvider, UserLooku
     @Override
     public boolean supportsCredentialType(String credentialType)
     {
+        log.info("supportsCredentialType() ::: credentialType: {}", credentialType);
         return PasswordCredentialModel.TYPE.equals(credentialType);
     }
 
@@ -121,13 +124,11 @@ public class RemoteUserStorageProvider implements UserStorageProvider, UserLooku
     @Override
     public boolean isValid(RealmModel realm, UserModel user, CredentialInput credentialInput)
     {
-        log.info("copiedUsername: {}", copiedUsername);
         log.info("isValid() EMAIL: {}", user.getEmail());
         log.info("isValid() USERNAME: {}", user.getUsername());
         log.info("isValid() PASSWORD: {}", credentialInput.getChallengeResponse());
 
-        //        final VerifyPasswordResponse verifyPasswordResponse = usersAPIService.verifyUserPassword(user.getUsername(),
-        final VerifyPasswordResponse verifyPasswordResponse = usersAPIService.verifyUserPassword(copiedUsername,
+        final VerifyPasswordResponse verifyPasswordResponse = usersAPIService.verifyUserPassword(user.getUsername(),
                 credentialInput.getChallengeResponse());
 
         if (verifyPasswordResponse == null)

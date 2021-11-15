@@ -57,6 +57,8 @@
 		</dependency>
 	</dependencies>
 
+<!--	maven-plugin must be disabled in order for Keycloak to correctly deploy and use this SPI-->
+<!--	apparently, maven-plugin packages the jar a little bit different than default packaging-->
 	<build>
 		<finalName>custom-user-storage-provider</finalName>
 <!--		<plugins>-->

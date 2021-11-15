@@ -12,6 +12,11 @@ import javax.ws.rs.core.MediaType;
 @Consumes(MediaType.APPLICATION_JSON)
 public interface UsersAPIService
 {
+    // =========================================================================================
+    // these are definitions for requests that need to be sent to remote Spring Boot Web Service
+    // to get user details and to validate user password on remote database
+    // =========================================================================================
+
     @GET
     @Path("/{username}")
     User getUserDetails(@PathParam("username") String name);

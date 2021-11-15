@@ -28,6 +28,7 @@ public class RemoteUserStorageProviderFactory implements UserStorageProviderFact
         return PROVIDER_NAME;
     }
 
+    // building HTTP client from UsersAPIService interface with target uri of remote Spring Boot application
     private UsersAPIService buildHttpClient(String uri)
     {
         final ResteasyClient resteasyClient = new ResteasyClientBuilder().build();
