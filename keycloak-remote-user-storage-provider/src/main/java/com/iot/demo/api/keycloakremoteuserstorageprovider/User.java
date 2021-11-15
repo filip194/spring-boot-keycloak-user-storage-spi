@@ -1,16 +1,24 @@
 package com.iot.demo.api.keycloakremoteuserstorageprovider;
 
+import java.io.Serializable;
+
 import lombok.Getter;
 import lombok.Setter;
 
+// actually, only getters and setters are needed, Keycloak takes care of constructors
 @Getter
 @Setter
-public class User
+//@ToString
+//@NoArgsConstructor
+//@AllArgsConstructor
+public class User implements Serializable
 {
+    private static final long serialVersionUID = 5313493413859895497L;
+
+    private String userId;
+    private String username;
     private String firstName;
     private String lastName;
     private String email;
-    private String userName;
-    private String userId;
 }
 

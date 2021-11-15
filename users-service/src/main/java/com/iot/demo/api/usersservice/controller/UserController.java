@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.iot.demo.api.usersservice.model.User;
+import com.iot.demo.api.usersservice.dto.UserDto;
+import com.iot.demo.api.usersservice.keycloakmodel.User;
 import com.iot.demo.api.usersservice.service.UserService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -30,13 +31,17 @@ public class UserController
     }
 
     @GetMapping(path = "/all")
-    public ResponseEntity<List<User>> getUsers()
+    public ResponseEntity<List<UserDto>> getUsers()
     {
         log.info("Getting all users");
         return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
     }
 
-    // these endpoints must be defined like this for keycloak remote user storage to trigger them and find info on users
+    // ==================================================================================================
+    // these endpoints must be defined EXACTLY LIKE THIS for keycloak remote user storage to trigger them
+    // and find user details in database
+    // ==================================================================================================
+
     @GetMapping("/{username}")
     public User getUser(@PathVariable("username") String userName)
     {

@@ -52,7 +52,8 @@ public class RemoteUserStorageProvider implements UserStorageProvider, UserLooku
         final StorageId storageId = new StorageId(id);
         final String username = storageId.getExternalId();
         log.info("getUserById() ::: id: {}", id);
-        log.info("getUserById() ::: username: {}", username);
+        log.info("getUserById() ::: username(externalId): {}", username);
+        log.info("getUserById() ::: providerId: {}", storageId.getProviderId());
         return getUserByUsername(username, realm);
     }
 

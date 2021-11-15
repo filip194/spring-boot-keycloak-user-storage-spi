@@ -9,7 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.iot.demo.api.usersservice.dao.entity.UserEntity;
 import com.iot.demo.api.usersservice.dao.repository.UserRepository;
-import com.iot.demo.api.usersservice.model.User;
+import com.iot.demo.api.usersservice.dto.UserDto;
+import com.iot.demo.api.usersservice.keycloakmodel.User;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -63,21 +64,25 @@ public class UserService
         return user;
     }
 
-    public List<User> getAllUsers()
+    public List<UserDto> getAllUsers()
     {
-        return userRepository.findAll().stream().map(this::convertUserEntityToUserModel).collect(Collectors.toList());
+        return userRepository.findAll().stream().map(this::convertUserEntityToUserDto).collect(Collectors.toList());
     }
 
-    private User convertUserEntityToUserModel(final UserEntity entity)
+    private UserDto convertUserEntityToUserDto(final UserEntity entity)
     {
-        final User user = new User();
-        user.setUsername(entity.getUsername());
-        user.setType(entity.getType());
-        user.setFirstName(entity.getFirstName());
-        user.setLastName(entity.getLastName());
-        user.setEmail(entity.getEmail());
-        user.setAge(entity.getAge());
-        return user;
+        final UserDto userDto = new UserDto();
+        userDto.setUserId(entity.getUserId());
+        userDto.setUsername(entity.getUsername());
+        userDto.setType(entity.getType());
+        userDto.setFirstName(entity.getFirstName());
+        userDto.setLastName(entity.getLastName());
+        userDto.setEmail(entity.getEmail());
+        userDto.setEmailVerified(entity.getEmailVerified());
+        userDto.setAge(entity.getAge());
+        userDto.setAccessToken(entity.getAccessToken());
+        userDto.setRefreshToken(entity.getRefreshToken());
+        return userDto;
     }
 }
 

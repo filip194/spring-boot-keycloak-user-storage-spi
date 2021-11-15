@@ -1,9 +1,9 @@
 package com.iot.demo.api.usersservice.config;
 
 /**
- * Only an example on how data can be added to database on application startups
+ * Only an example on how data can be added to database on application startup
  */
-@Deprecated(since = "...Flyway was introduced, as initUser() method will add the same new user record into DB each time application is started.")
+@Deprecated(since = "...Flyway was introduced. initUser() method will add the same new user record into DB each time application is started.")
 //@Component
 public class InitialUserSetup
 {
