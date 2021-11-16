@@ -43,17 +43,17 @@ public class UserController
     // ==================================================================================================
 
     @GetMapping("/{username}")
-    public User getUser(@PathVariable("username") String userName)
+    public User getUser(@PathVariable("username") String username)
     {
-        return userService.getUserDetails(userName);
+        return userService.getUserDetails(username);
     }
 
     @PostMapping("/{username}/verify-password")
-    public VerifyPasswordResponse verifyUserPassword(@PathVariable("username") String userName,
+    public VerifyPasswordResponse verifyUserPassword(@PathVariable("username") String username,
             @RequestBody String password)
     {
         final VerifyPasswordResponse passwordVerificationStatus = new VerifyPasswordResponse(false);
-        final User user = userService.getUserDetails(userName, password);
+        final User user = userService.getUserDetails(username, password);
 
         if (user != null)
         {

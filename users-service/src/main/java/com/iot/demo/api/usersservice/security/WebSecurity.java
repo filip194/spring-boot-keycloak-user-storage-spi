@@ -17,7 +17,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/users/**")
-                .hasIpAddress("127.0.0.1")
+                .hasIpAddress("127.0.0.1") // this is not the same as 'localhost'
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

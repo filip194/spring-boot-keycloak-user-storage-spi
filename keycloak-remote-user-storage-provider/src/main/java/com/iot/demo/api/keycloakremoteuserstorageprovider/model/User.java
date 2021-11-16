@@ -1,4 +1,4 @@
-package com.iot.demo.api.keycloakremoteuserstorageprovider;
+package com.iot.demo.api.keycloakremoteuserstorageprovider.model;
 
 import java.io.Serializable;
 

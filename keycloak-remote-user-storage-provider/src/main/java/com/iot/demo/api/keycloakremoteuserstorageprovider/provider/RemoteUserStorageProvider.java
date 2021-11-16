@@ -1,6 +1,4 @@
-package com.iot.demo.api.keycloakremoteuserstorageprovider;
-
-import java.util.stream.Collectors;
+package com.iot.demo.api.keycloakremoteuserstorageprovider.provider;
 
 import org.keycloak.component.ComponentModel;
 import org.keycloak.credential.CredentialInput;
@@ -14,6 +12,9 @@ import org.keycloak.storage.StorageId;
 import org.keycloak.storage.UserStorageProvider;
 import org.keycloak.storage.adapter.AbstractUserAdapter;
 import org.keycloak.storage.user.UserLookupProvider;
+
+import com.iot.demo.api.keycloakremoteuserstorageprovider.model.User;
+import com.iot.demo.api.keycloakremoteuserstorageprovider.service.UsersAPIService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -58,9 +59,10 @@ public class RemoteUserStorageProvider implements UserStorageProvider, UserLooku
     }
 
     @Override
-    public UserModel getUserByUsername(String username, RealmModel realm)
+    public UserModel getUserByUsername(final String username, final RealmModel realm)
     {
         log.info("getUserByUsername() ::: username: {}", username);
+
         UserModel userModel = null;
         final User user = usersAPIService.getUserDetails(username);
 
@@ -75,12 +77,14 @@ public class RemoteUserStorageProvider implements UserStorageProvider, UserLooku
     @Override
     public UserModel getUserByEmail(String email, RealmModel realm)
     {
+        log.info("getUserByEmail() ::: email: {}", email);
+
         return null;
     }
 
-    private UserModel createUserModel(final String username, RealmModel realm)
+    private UserModel createUserModel(String username, RealmModel realm)
     {
-        log.info("createUserModel() USERNAME: {}", username);
+        log.info("createUserModel() ::: username: {}", username);
 
         return new AbstractUserAdapter(session, realm, componentModel)
         {
@@ -96,7 +100,7 @@ public class RemoteUserStorageProvider implements UserStorageProvider, UserLooku
     // CredentialInputValidator - validate user credentials
     // ####################################################
 
-    // checks if credential provider supports given credential type, which is in our case password
+    // checks if credential provider supports given credential type, which is in our case 'password'
     @Override
     public boolean supportsCredentialType(String credentialType)
     {
@@ -112,13 +116,8 @@ public class RemoteUserStorageProvider implements UserStorageProvider, UserLooku
         {
             return false;
         }
-        return !getUserCredentialStore().getStoredCredentialsByTypeStream(realm, user, credentialType)
-                .collect(Collectors.toList()).isEmpty();
-    }
-
-    private UserCredentialStore getUserCredentialStore()
-    {
-        return session.userCredentialManager();
+        return getUserCredentialStore().getStoredCredentialsByTypeStream(realm, user, credentialType).findAny()
+                .isPresent();
     }
 
     // invoked by Keycloak automatically when it needs to validate user password
@@ -139,5 +138,9 @@ public class RemoteUserStorageProvider implements UserStorageProvider, UserLooku
         return verifyPasswordResponse.isVerified();
     }
 
+    private UserCredentialStore getUserCredentialStore()
+    {
+        return session.userCredentialManager();
+    }
 }
 
