@@ -61,7 +61,7 @@
 <!--	apparently, maven-plugin packages the jar a little bit different than default packaging-->
 	<build>
 <!--		name must be up to 36 characters long or it won't be deployed to Keycloak User Federation successfully -->
-		<finalName>custom-user-storage-provider</finalName>
+		<finalName>remote-user-storage-provider</finalName>
 <!--		<plugins>-->
 <!--			<plugin>-->
 <!--				<groupId>org.springframework.boot</groupId>-->
