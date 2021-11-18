@@ -1,11 +1,11 @@
-package com.iot.demo.api.usersservice.dto;
+package com.iot.demo.api.keycloak.usersservice.dto;
 
 import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import com.iot.demo.api.usersservice.dao.entity.UserType;
+import com.iot.demo.api.keycloak.usersservice.dao.entity.UserType;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

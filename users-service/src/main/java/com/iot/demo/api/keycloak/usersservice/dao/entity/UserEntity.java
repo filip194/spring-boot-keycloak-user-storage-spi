@@ -1,4 +1,4 @@
-package com.iot.demo.api.usersservice.dao.entity;
+package com.iot.demo.api.keycloak.usersservice.dao.entity;
 
 import java.io.Serializable;
 import java.sql.Timestamp;

@@ -1,4 +1,4 @@
-package com.iot.demo.api.usersservice.keycloakmodel;
+package com.iot.demo.api.keycloak.usersservice.keycloakmodel;
 
 import java.io.Serializable;
 

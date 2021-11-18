@@ -1,4 +1,4 @@
-package com.iot.demo.api.usersservice.controller;
+package com.iot.demo.api.keycloak.usersservice.controller;
 
 import java.util.List;
 
@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.iot.demo.api.usersservice.dto.UserDto;
-import com.iot.demo.api.usersservice.keycloakmodel.User;
-import com.iot.demo.api.usersservice.service.UserService;
+import com.iot.demo.api.keycloak.usersservice.dto.UserDto;
+import com.iot.demo.api.keycloak.usersservice.keycloakmodel.User;
+import com.iot.demo.api.keycloak.usersservice.service.UserService;
 
 import lombok.extern.slf4j.Slf4j;
 

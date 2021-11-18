@@ -1,4 +1,4 @@
-package com.iot.demo.api.usersservice.security;
+package com.iot.demo.api.keycloak.usersservice.security;
 
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;

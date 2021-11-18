@@ -1,4 +1,4 @@
-package com.iot.demo.api.usersservice.config;
+package com.iot.demo.api.keycloak.usersservice.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

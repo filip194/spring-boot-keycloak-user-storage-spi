@@ -1,4 +1,4 @@
-package com.iot.demo.api.usersservice.service;
+package com.iot.demo.api.keycloak.usersservice.service;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -7,10 +7,10 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.iot.demo.api.usersservice.dao.entity.UserEntity;
-import com.iot.demo.api.usersservice.dao.repository.UserRepository;
-import com.iot.demo.api.usersservice.dto.UserDto;
-import com.iot.demo.api.usersservice.keycloakmodel.User;
+import com.iot.demo.api.keycloak.usersservice.dao.entity.UserEntity;
+import com.iot.demo.api.keycloak.usersservice.dao.repository.UserRepository;
+import com.iot.demo.api.keycloak.usersservice.dto.UserDto;
+import com.iot.demo.api.keycloak.usersservice.keycloakmodel.User;
 
 import lombok.extern.slf4j.Slf4j;
 

@@ -1,4 +1,4 @@
-package com.iot.demo.api.usersservice.controller;
+package com.iot.demo.api.keycloak.usersservice.controller;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package com.iot.demo.api.usersservice.config;
+package com.iot.demo.api.keycloak.usersservice.config;
 
 /**
  * Only an example on how data can be added to database on application startup
